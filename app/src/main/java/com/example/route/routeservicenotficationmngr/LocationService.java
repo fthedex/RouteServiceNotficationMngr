@@ -90,6 +90,8 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
         super.onDestroy();
     }
 
+    //TEST GIT
+
     private String getIdFromSessionFile() {
         String filename= "user_session";
         int c;
