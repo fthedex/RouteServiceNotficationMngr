@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     TextView username,password;
     public RequestQueue requestQueue;
     boolean loggedIn = false;
+    Bus currentBus;
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        currentBus = new Bus();
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -136,6 +140,11 @@ public class MainActivity extends AppCompatActivity {
         loggedIn=true;
         loginBtn.setEnabled(false);
         logoutBtn.setEnabled(true);
+
+        currentBus.setId(username.getText().toString());
+        createWriteFile(username.getText().toString());
+        addToServer(currentBus);
+
         onStartService();
         Toast.makeText(this, "Successfully Logged In!", Toast.LENGTH_SHORT).show();
     }
@@ -205,5 +214,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 //TEST GITadsasdsadas asdasdsad asdasdas
+
+    public void addToServer(final Bus localBus){
+
+        String insertUrl = "http://45.33.73.36/Route/addToServer.php?busId="+localBus.getId()+"&busLng="+localBus.getLng()+"&busLat="+localBus.getLat();
+
+        StringRequest request = new StringRequest(Request.Method.GET, insertUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+                System.out.println("SERVER RESPONSE ADDING TO SERVER: "+response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("SERVER ERROR RESPONSE ADDING TO SERVER: "+error.getMessage());
+            }
+        }) {
+/*
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> parameters  = new HashMap<String, String>();
+                parameters.put("busId",localBus.getId());
+                parameters.put("busLng",Double.toString(localBus.getLng()));
+                parameters.put("busLat",Double.toString(localBus.getLat()));
+
+                return parameters;
+            }*/
+        };
+        requestQueue.add(request);
+
+
+    }           //WEB SERVICES FOR DATA COMMUNICATION!
+
 
 }

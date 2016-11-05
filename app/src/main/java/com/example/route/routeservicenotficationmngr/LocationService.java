@@ -80,7 +80,7 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
     public void onDestroy() {
         Toast.makeText(this, "Destroying Service!", Toast.LENGTH_SHORT).show();
 
-       // removeFromServer(currentBus);
+        removeFromServer(currentBus);
         deleteNotificationBar();
 
         if (mGoogleApiClient.isConnected()) {
@@ -122,6 +122,8 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
 
         currentBus = new Bus();
         requestQueue = Volley.newRequestQueue(LocationService.this);
+        currentBus.setId(getIdFromSessionFile());
+
 
         if (checkPlayServices()) {
             buildGoogleApiClient();
@@ -189,12 +191,7 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
 
             currentBus.setLng(longtitude);
             currentBus.setLat(latitude);
-         /*   if(firstLocationListen){
-                addToServer(currentBus);
-                firstLocationListen=false;
-            }
-            else
-                updateLocServer(currentBus);*/
+            updateLocServer(currentBus);
 
             Toast.makeText(this, (latitude + ", " + longtitude), Toast.LENGTH_SHORT).show();
         } else {
