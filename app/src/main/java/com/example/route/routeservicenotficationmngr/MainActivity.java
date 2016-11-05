@@ -157,14 +157,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-/*
+
     @Override
     protected void onStart(){
         super.onStart();
         if(!checkPlayServices()){
             Toast.makeText(this, "Google play isn't available on this device , please enable it first!", Toast.LENGTH_SHORT).show();
         }
-    }*/
+    }
 
     private void createWriteFile(String id) {
         String string = id;

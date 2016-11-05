@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -10,6 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/androidblur"
     tools:context="com.example.route.routeservicenotficationmngr.MainActivity">
+
+
 
 
     <EditText
@@ -23,10 +26,10 @@
         android:padding="7dp"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:theme="@style/MyEditTextTheme"
-        android:layout_marginTop="128dp" />
+        android:layout_marginTop="186dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -44,16 +47,15 @@
         android:layout_alignStart="@+id/driverUsername"
         android:layout_marginTop="57dp" />
 
-    <Button
-        android:text="Login"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginBtn"
-        android:layout_below="@+id/driverPassword"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@color/blue"
-        android:layout_centerHorizontal="true" />
+        app:srcCompat="@drawable/websitelogo"
+        android:layout_above="@+id/driverPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:id="@+id/imageView" />
+
 
     <Button
         android:text="Logout"
@@ -64,8 +66,20 @@
         android:textColor="@color/white"
         android:background="@color/blue"
         android:visibility="invisible"
-        android:layout_alignBaseline="@+id/loginBtn"
-        android:layout_alignBottom="@+id/loginBtn"
-        android:layout_alignStart="@+id/loginBtn" />
+        android:layout_below="@+id/driverPassword"
+        android:layout_alignStart="@+id/loginBtn"
+        android:layout_marginTop="26dp" />
+
+    <Button
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginBtn"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/blue"
+        android:layout_alignBaseline="@+id/logoutBtn"
+        android:layout_alignBottom="@+id/logoutBtn"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

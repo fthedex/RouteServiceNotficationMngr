@@ -10,7 +10,8 @@
 
     <style name="MyEditTextTheme">
         <!-- Used for the bottom line when not selected / focused -->
-        <item name="colorControlNormal">#0486CB</item>
+        <item name="colorControlNormal">@color/blue</item>
+        <item name="android:colorPressedHighlight">@color/red</item>
         <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
     </style>
 
