@@ -88,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 loggedIn=false;
                 loginBtn.setEnabled(true);
                 logoutBtn.setEnabled(false);
+
+                username.setEnabled(true);
+                password.setEnabled(true);
                 stopService();
                 Toast.makeText(MainActivity.this, "Logged out!", Toast.LENGTH_SHORT).show();
 
@@ -140,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
         loggedIn=true;
         loginBtn.setEnabled(false);
         logoutBtn.setEnabled(true);
+        username.setEnabled(false);
+        password.setEnabled(false);
 
         currentBus.setId(username.getText().toString());
         createWriteFile(username.getText().toString());

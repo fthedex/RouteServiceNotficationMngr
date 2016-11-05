@@ -78,7 +78,7 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "Destroying Service!", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Destroying Service!", Toast.LENGTH_SHORT).show();
 
         removeFromServer(currentBus);
         deleteNotificationBar();
@@ -118,7 +118,7 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
 
     @Override
     public void onCreate() {
-        Toast.makeText(this, "Creating Service!", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Creating Service!", Toast.LENGTH_SHORT).show();
 
         currentBus = new Bus();
         requestQueue = Volley.newRequestQueue(LocationService.this);
@@ -193,7 +193,7 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
             currentBus.setLat(latitude);
             updateLocServer(currentBus);
 
-            Toast.makeText(this, (latitude + ", " + longtitude), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, (latitude + ", " + longtitude), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Couldn't get the location. Make sure location is enabled on the device", Toast.LENGTH_SHORT).show();
 
@@ -267,7 +267,7 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
     public void onLocationChanged(Location location) {
         mLastLocation = location;
 
-        Toast.makeText(this, "Location changed!", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Location changed!", Toast.LENGTH_SHORT).show();
 
         displayLocation();
     }
