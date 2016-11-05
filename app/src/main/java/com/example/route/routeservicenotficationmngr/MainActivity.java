@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loggedIn=false;
-                loginBtn.setEnabled(true);
-                logoutBtn.setEnabled(false);
+                loginBtn.setVisibility(View.VISIBLE);
+                logoutBtn.setVisibility(View.INVISIBLE);
 
                 username.setEnabled(true);
                 password.setEnabled(true);
@@ -141,8 +141,9 @@ public class MainActivity extends AppCompatActivity {
     private void logUserIn() {
 
         loggedIn=true;
-        loginBtn.setEnabled(false);
-        logoutBtn.setEnabled(true);
+
+        loginBtn.setVisibility(View.INVISIBLE);
+        logoutBtn.setVisibility(View.VISIBLE);
         username.setEnabled(false);
         password.setEnabled(false);
 
