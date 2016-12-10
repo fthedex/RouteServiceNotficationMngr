@@ -389,7 +389,6 @@ private void createLocationOnStatusBar() {
         requestQueue.add(request);
 
     }
-    public void removeFromServer(final Bus localBus) {
         String deleteUrl = "http://45.33.73.36/Route/removeFromServer.php?busId="+localBus.getId();
         StringRequest request = new StringRequest(Request.Method.GET, deleteUrl, new Response.Listener<String>() {
             @Override

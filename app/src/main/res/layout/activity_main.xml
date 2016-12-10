@@ -53,7 +53,7 @@
         app:srcCompat="@drawable/websitelogo"
         android:layout_above="@+id/driverPassword"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
+
         android:id="@+id/imageView" />
 
 
