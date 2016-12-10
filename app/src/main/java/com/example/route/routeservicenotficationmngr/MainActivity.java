@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 username.setEnabled(true);
                 password.setEnabled(true);
                 stopService();
-                Toast.makeText(MainActivity.this, "Logged out!", Toast.LENGTH_SHORT).show();
 
             }
         });

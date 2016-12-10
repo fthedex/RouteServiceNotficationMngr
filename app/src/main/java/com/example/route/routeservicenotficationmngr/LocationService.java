@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.media.tv.TvView;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.ResultReceiver;
@@ -80,14 +81,24 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
     public void onDestroy() {
       //  Toast.makeText(this, "Destroying Service!", Toast.LENGTH_SHORT).show();
 
-        removeFromServer(currentBus);
+
+
+        new Thread(new Runnable() {
+            public void run() {
+                removeFromServer(currentBus);
+            }
+        }).start();
+
+
+        super.onDestroy();
+        /*
         deleteNotificationBar();
 
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
 
-        super.onDestroy();
+        super.onDestroy();*/
     }
 
     //TEST GIT
@@ -284,9 +295,9 @@ public class LocationService extends IntentService implements GoogleApiClient.Co
     private void setNotificationBarText(String text){
 
 
-        noti.setContentTitle("Your Location");
+        noti.setContentTitle("'Under-Track', Location:");
         noti.setContentText(text);
-        noti.setSmallIcon(R.mipmap.ic_launcher);
+        noti.setSmallIcon(R.drawable.websitelogosmall);
         noti.setOngoing(true);
 
 
@@ -302,7 +313,7 @@ private void createLocationOnStatusBar() {
    noti = new NotificationCompat.Builder(this);
         noti.setContentTitle("Your Location");
         noti.setContentText("NO SIGNAL");
-        noti.setSmallIcon(R.mipmap.ic_launcher);
+        noti.setSmallIcon(R.drawable.websitelogosmall);
         noti.setOngoing(true);
 
         notificationManager.notify(1234, noti.build());
@@ -310,6 +321,8 @@ private void createLocationOnStatusBar() {
 
 
 }
+
+
     public void addToServer(final Bus localBus){
 
         String insertUrl = "http://45.33.73.36/Route/addToServer.php?busId="+localBus.getId()+"&busLng="+localBus.getLng()+"&busLat="+localBus.getLat();
@@ -382,8 +395,17 @@ private void createLocationOnStatusBar() {
             @Override
             public void onResponse(String response) {
 
-
+// ON LOGOUT , delete notification bar and disconnect from google play
                 System.out.println("SERVER RESPONSE REMOVE TO SERVER: "+response);
+
+                deleteNotificationBar();
+
+                if (mGoogleApiClient.isConnected()) {
+                    mGoogleApiClient.disconnect();
+                }
+                Toast.makeText(LocationService.this, "Logged out successfully!", Toast.LENGTH_SHORT).show();
+
+
 
             }
         }, new Response.ErrorListener() {
